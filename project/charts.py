@@ -15,3 +15,10 @@ class Charts:
 
         plt.show()
 
+    def pie_chart(self, labels: list, sizes: list, title: str):
+        fig, ax = plt.subplots()
+        ax.pie(sizes, None, labels = labels, autopct = '%1.1f%%', startangle = 90)
+        ax.set(aspect = 'equal', title = title)
+
+        plt.show()
+

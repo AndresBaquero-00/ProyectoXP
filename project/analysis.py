@@ -6,7 +6,7 @@ class Anaylsis:
     def __init__(self) -> None:
         self.calculo = Calculo()
     
-    def sort_by_area_sembrada(self, data: list) -> tuple:
+    def sort_by_area_sembrada(self, data: list, n: int = 0) -> tuple:
         departments: list = []
         area_s: list = []
 
@@ -16,12 +16,21 @@ class Anaylsis:
 
         area_s, departments = self.sort(area_s, departments)
 
+        if n > 0:
+            res: list = area_s[n:]
+            departments = departments[0:n]
+            area_s = area_s[0:n]
+
+            departments.append('Otros')
+            area_s.append(self.calculo.sumatoria(res))
+
+
         return departments, area_s
 
     def sort(self, a: list, b: list) -> tuple:
         for i in range(len(a)):
             for j in range(i, len(a)):
-                if a[i] > a[j]:
+                if a[i] < a[j]:
                     temp = a[i]
                     tempo = b[i]
 
