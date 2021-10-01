@@ -1,7 +1,9 @@
+from project.data import *
+
 class Filter:
     data: list = None
-    def __init__(self, data: list) -> None:
-        self.data = data
+    def __init__(self) -> None:
+        self.data = Data().get_data()
     
     def get_departments(self) -> list:
         rows: list = []
