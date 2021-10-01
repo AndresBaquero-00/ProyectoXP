@@ -27,9 +27,11 @@ class Anaylsis:
             area_s.append(self.calculo.sumatoria(res))
 
         if chart_type == 'bar':
-            self.charts.horizontal_bar(departments, area_s,'Area Sembrada (Hectareas)')
+            return self.charts.horizontal_bar(departments, area_s,'Area Sembrada (Hectareas)')
         elif chart_type == 'pie':
-            self.charts.pie_chart(departments, area_s,'Area Sembrada por cada Departamento')
+            return self.charts.pie_chart(departments, area_s,'Area Sembrada por cada Departamento')
+        else:
+            return 'none'
 
     def sort(self, a: list, b: list) -> tuple:
         for i in range(len(a)):
