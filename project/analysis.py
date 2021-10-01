@@ -1,20 +1,22 @@
 from project.calculo import *
+from project.charts import *
+from project.filters import *
 
 class Anaylsis:
     calculo: Calculo
+    filters: Filter
+    charts: Charts
 
     def __init__(self) -> None:
         self.calculo = Calculo()
+        self.filters = Filter()
+        self.charts = Charts()
     
-    def sort_by_area_sembrada(self, data: list, n: int = 0) -> tuple:
-        departments: list = []
-        area_s: list = []
+    def sort_by_area_sembrada(self, chart_type: str, n: int = 0) -> str:
+        departments: list = self.filters.get_departments()
+        area_s: list = [ self.calculo.sumatoria(self.filters.get_area_sembrada_by_department(i)) for i in departments ]
 
-        for i in data:
-            departments.append(i['department'])
-            area_s.append(self.calculo.sumatoria(i['area_sembrada']))
-
-        area_s, departments = self.sort(area_s, departments)
+        departments, area_s = self.sort(area_s, departments)
 
         if n > 0:
             res: list = area_s[n:]
@@ -24,8 +26,10 @@ class Anaylsis:
             departments.append('Otros')
             area_s.append(self.calculo.sumatoria(res))
 
-
-        return departments, area_s
+        if chart_type == 'bar':
+            self.charts.horizontal_bar(departments, area_s,'Area Sembrada (Hectareas)')
+        elif chart_type == 'pie':
+            self.charts.pie_chart(departments, area_s,'Area Sembrada por cada Departamento')
 
     def sort(self, a: list, b: list) -> tuple:
         for i in range(len(a)):
@@ -40,4 +44,4 @@ class Anaylsis:
                     a[j] = temp
                     b[j] = tempo
 
-        return a, b
+        return b, a
