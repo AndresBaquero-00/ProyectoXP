@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/home.css') }}">
+    <title>Evaluaciones Agropecuarias Municipales – EVA. 2019 - 2020</title>
+</head>
+<body>
+    <div class="header">
+        <h1 class="title">
+            Evaluaciones Agropecuarias Municipales (EVA) 2019
+            <hr class="hr-analisis"/>
+        </h1>
+        <div class="desc">
+            <img src="{{ url_for('static', filename = 'img/banner.jpg') }}" class="izquierda">
+            <p>
+                Es un proyecto del Ministerio de Agricultura y Desarrollo Rural - MADR, que se viene desarrollando desde el año 1972 y se constituye en una herramienta del Sistema de Información Agropecuaria del país, a través del cual se obtiene anualmente la información de la actividad agrícola, ganadera, forestal y acuícola de cada uno de los municipios. 
+                El desarrollo de las EVA se fundamenta en la metodología de consensos municipales, teniendo en cuenta el conocimiento local y la participación de los diferentes representantes de las actividades productivas del sector a nivel municipal, departamental y nacional.
+                Su principal fortaleza radica en la cobertura de 1.103 municipios y 239 productos de la canasta agropecuaria y acuícola presentes a lo largo de la geografía nacional, constituyéndose en una de las fuentes de información más consultadas por sus niveles de desagregación.
+            </p>
+        </div>
+    </div>
+    <div class="indicadores">
+        <div class="card cultivado">
+            <div class="card-header">
+                <span class="material-icons icon">grass</span>
+            </div>
+            <div class="card-body">
+              <p>Area Cultivada Promedio</p>
+              <p class="cifras">{{ cultivada_promedio }}</p>
+            </div>
+        </div>
+
+        <div class="card cosechado">
+            <div class="card-header">
+                <span class="material-icons icon">trending_up</span>
+            </div>
+            <div class="card-body">
+              <p>Area Cosechada Promedio</p>
+              <p class="cifras">{{ cosechada_promedio }}</p>
+            </div>
+        </div>
+
+        <div class="card produccion">
+            <div class="card-header">
+                <span class="material-icons icon">food_bank</span>
+            </div>
+            <div class="card-body">
+              <p>Producción Total en el 2019</p>
+              <p class="cifras">{{ produccion_total }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="contenedor">
+            <div class="analisis">
+                <h2>
+                    Area Sembrada vs Area Cosechada por cada Departamento
+                    <hr class="hr-analisis"/>
+                </h2>
+                
+            </div>
+        
+            <div class="graficas">
+                <div class="grafica">
+                    {{ chart_area_sembrada_bar | safe }}
+                </div>
+                <div class="grafica">
+                    {{ chart_area_sembrada_bar | safe }}
+                </div>
+            </div>
+        </div>
+    
+        <div class="analisis">
+            <h2>
+                ¿Qué interviene en este reporte?
+                <hr class="hr-analisis"/>
+            </h2>
+            
+            <p>
+                Este reporte indica el porcentaje y el número de hectáreas sembradas por cada departamento.
+                La cantidad de hectáreas sembrada está determinada a partir de la tierra cultivable que posee
+                cada departamento.
+            </p>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-center text-white">
+        <!-- Grid container -->
+        <div class="container p-4">          
+          <!-- Section: Links -->
+          <section class="">
+            <!--Grid row-->
+            <div class="row">      
+              <!--Grid column-->
+              <div class="col-lg-6 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Integrantes</h5>
+      
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <p class="text-white">Andrés Leonardo Baquero Hernández</p>
+                  </li>
+                  <li>
+                    <p class="text-white">Bryan Alejandro Puentes Camargo</p>
+                  </li>
+                  <li>
+                    <p class="text-white">Johnatan Guillermo Ruiz Bautista</p>
+                  </li>
+                </ul>
+              </div>
+              <!--Grid column-->
+      
+              <!--Grid column-->
+              <div class="col-lg-6 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Códigos</h5>
+      
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <p class="text-white">20181020124</p>
+                  </li>
+                  <li>
+                    <p class="text-white">20181020044</p>
+                  </li>
+                  <li>
+                    <p class="text-white">20181020034</p>
+                  </li>
+                </ul>
+              </div>
+              <!--Grid column-->
+            </div>
+            <!--Grid row-->
+          </section>
+          <!-- Section: Links -->
+        </div>
+        <!-- Grid container -->
+      
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          © 2021 Copyright:
+          <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+          <p>Powered by: <a class="text-white" href="https://www.datos.gov.co/">Datos Abiertos Colombia</a></p>
+        </div>
+        <!-- Copyright -->
+    </footer>
+      <!-- Footer -->
+</body>
+</html>
