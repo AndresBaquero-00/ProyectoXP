@@ -1,0 +1,100 @@
+.header {
+    padding-top: 50px;
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-bottom: 50px;
+}
+
+.title {
+    font-weight: 300;
+}
+
+.izquierda {
+    float: left;
+    margin-right: 15px;
+}
+
+.indicadores {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 40px 10% 10px 10%;
+}
+
+.card {
+    display: inline-flex !important;
+}
+
+.card-header {
+    border-bottom: none !important;
+    text-align: center;
+    background-color: transparent;
+}
+
+.icon {
+    font-size: 35px;
+}
+
+.cifras {
+    font-size: 30px;
+    text-align: center;
+}
+
+.cultivado{
+    background-color: #26418f;
+    color: #F2F2F2;
+}
+
+.produccion {
+    background-color: #b4004e;
+    color: #F2F2F2;
+}
+
+.cosechado {
+    background-color: #00766c;
+    color: #F2F2F2;
+}
+
+.contenedor {
+    margin-top: 50px;
+}
+
+.graficas {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.grafica {
+    display: inline-flex;
+    width: 50%;
+}
+
+.analisis {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 20px;
+}
+
+.hr-analisis {
+    border: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #b4004e;
+    opacity: 1;
+}
+
+hr:not([size]) {
+    height: 2px;
+}
+
+h1, h2 {
+    display: inline-block;
+}
+
