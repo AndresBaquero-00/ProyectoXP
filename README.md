@@ -49,7 +49,7 @@
     <img src="./img/CRC_2.png">
     <img src="./img/CRC_3.png">
     <img src="./img/CRC_4.png">
-    <img src="./img/CRC_4.png">
+    <img src="./img/CRC_5.png">
 </p>
 
 <h1>Pruebas del Proyecto</h1>
