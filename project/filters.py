@@ -1,29 +1,26 @@
 from project.data import *
+import pandas
 
 class Filter:
     data: list = None
     def __init__(self) -> None:
-        self.data = Data().get_data()
+        self.data: pandas.DataFrame = Data().get_data()
     
-    def get_departments(self) -> list:
-        rows: list = []
-        for dato in self.data:
-            if rows.count(dato['departamento']) == 0:
-                rows.append(dato['departamento'])
-        return rows
+    def get_unique(self, label: str) -> pandas.Series:
+        return self.data[label].unique()
 
-    def get_cultivos(self) -> list:
-        rows: list = []
-        for dato in self.data:
-            if rows.count(dato['cultivo']) == 0:
-                rows.append(dato['cultivo'])
-        return rows
+    def get_grouped_area_sembrada(self, label: str):
+        return self.data.groupby(label)['Area Sembrada (ha)']
 
-    def get_area_sembrada_by_department(self, department: str) -> list:
-        rows: list = []
-        for dato in self.data:
-            if dato['departamento'] == department:
-                rows.append(dato['area_sembrada_ha'])
+    def get_grouped_area_cosechada(self, label: str):
+        return self.data.groupby(label)['Area Cosechada (ha)']
 
-        return rows
+    def get_grouped_produccion(self, label: str):
+        return self.data.groupby(label)['Producción (t)']
+
+    def get_field(self, label: str) -> pandas.Series:
+        return self.data[label]
+
+    def get_row(self, object, index) -> pandas.Series:
+        return object.iloc[index]
     

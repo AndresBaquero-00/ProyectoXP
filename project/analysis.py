@@ -1,49 +1,40 @@
-from project.calculo import *
-from project.charts import *
+from project.util import *
 from project.filters import *
 
-class Anaylsis:
-    calculo: Calculo
-    filters: Filter
-    charts: Charts
+class Analysis:
 
     def __init__(self) -> None:
-        self.calculo = Calculo()
+        self.util = Util()
         self.filters = Filter()
-        self.charts = Charts()
+
+    def departamentos(self) -> list:
+        return list(self.filters.get_unique('Departamento'))
     
-    def sort_by_area_sembrada(self, chart_type: str, n: int = 0) -> str:
-        departments: list = self.filters.get_departments()
-        area_s: list = [ self.calculo.sumatoria(self.filters.get_area_sembrada_by_department(i)) for i in departments ]
+    def area_sembrada_por_departamento(self) -> pandas.Series:
+        fdata = self.filters.get_grouped_area_sembrada('Departamento')
+        fdata = self.util.sum(fdata)
+        fdata = self.util.sort(fdata)
+        return fdata
 
-        departments, area_s = self.sort(area_s, departments)
+    def produccion_por_departamento(self) -> pandas.Series:
+        fdata = self.filters.get_grouped_produccion('Departamento')
+        fdata = self.util.sum(fdata)
+        fdata = self.util.sort(fdata)
+        return fdata
+    
+    def area_cultivada(self) -> float:
+        fdata = self.filters.get_field('Area Sembrada (ha)')
+        return self.util.sum(fdata)
 
-        if n > 0:
-            res: list = area_s[n:]
-            departments = departments[0:n]
-            area_s = area_s[0:n]
+    def area_cosechada_promedio(self) -> float:
+        fdata = self.filters.get_grouped_area_cosechada('Departamento')
+        fdata = self.util.sum(fdata)
+        return self.util.mean(fdata)
 
-            departments.append('Otros')
-            area_s.append(self.calculo.sumatoria(res))
+    def produccion_total(self) -> float:
+        fdata = self.filters.get_grouped_produccion('Año')
+        fdata = self.util.sum(fdata)
+        return self.filters.get_row(fdata, 0)
 
-        if chart_type == 'bar':
-            return self.charts.horizontal_bar(departments, area_s,'Area Sembrada (Hectareas)')
-        elif chart_type == 'pie':
-            return self.charts.pie_chart(departments, area_s,'Area Sembrada por cada Departamento')
-        else:
-            return 'none'
 
-    def sort(self, a: list, b: list) -> tuple:
-        for i in range(len(a)):
-            for j in range(i, len(a)):
-                if a[i] < a[j]:
-                    temp = a[i]
-                    tempo = b[i]
 
-                    a[i] = a[j]
-                    b[i] = b[j]
-
-                    a[j] = temp
-                    b[j] = tempo
-
-        return b, a

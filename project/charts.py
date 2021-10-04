@@ -7,7 +7,7 @@ class Charts:
     figure: Figure
     
     def horizontal_bar(self, x: list, y: list, xlabel: str) -> str:
-        self.figure = Figure(figsize = (8, 7))
+        self.figure = Figure(figsize = (6, 6))
         ax = self.figure.subplots()
         # self.figure, ax = plt.subplots(figsize = (8, 7))
         y_pos = np.arange(len(x))

@@ -9,7 +9,3 @@ calculo = Calculo()
 def test_request_data() -> None:
     assert data.get_data() != None
 
-# Prueba que verifica que la suma de unos datos genéricos
-# Sea correcta
-def test_sumatoria() -> None:
-    assert calculo.sumatoria(['1', '1.5', '4.5']) == 7
